@@ -60,6 +60,13 @@ services:
       # - GOOGLE_CHAT_ALLOWED_USERS=${GOOGLE_CHAT_ALLOWED_USERS}
     command: ["gateway", "run"]
 
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f hermes || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
   dashboard:
     image: hermes-agent
     container_name: hermes-dashboard
@@ -74,3 +81,10 @@ services:
       - HERMES_GID=${HERMES_GID:-10000}
     # Localhost-only. For remote access, tunnel via `ssh -L 9119:localhost:9119`.
     command: ["dashboard", "--host", "0.0.0.0"]
+
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f dashboard || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
