@@ -79,6 +79,10 @@ services:
     environment:
       - HERMES_UID=${HERMES_UID:-10000}
       - HERMES_GID=${HERMES_GID:-10000}
+      - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=admin
+      - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=ChangeThisImmediately
+      - HERMES_DASHBOARD_BASIC_AUTH_SECRET=some-long-random-secret-string
+      
     # Localhost-only. For remote access, tunnel via `ssh -L 9119:localhost:9119`.
     command: ["dashboard", "--host", "0.0.0.0"]
 
