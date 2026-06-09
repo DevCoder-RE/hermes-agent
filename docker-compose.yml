@@ -41,7 +41,7 @@ services:
       # To expose the OpenAI-compatible API server beyond localhost,
       # uncomment BOTH lines (API_SERVER_KEY is mandatory for auth):
       - API_SERVER_HOST=0.0.0.0
-      - API_SERVER_KEY=${API_SERVER_KEY}
+      - API_SERVER_KEY=${API_SERVER_KEY:-379213379213379213379213}
       # Microsoft Teams — uncomment and fill in to enable Teams gateway.
       # Register your bot at https://dev.botframework.com/ to get these values.
       # - TEAMS_CLIENT_ID=${TEAMS_CLIENT_ID}
@@ -82,13 +82,13 @@ services:
       # - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=admin
       # - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=ChangeThisImmediately
       # - HERMES_DASHBOARD_BASIC_AUTH_SECRET=some-long-random-secret-string
-      - HERMES_DASHBOARD_OIDC_ISSUER=https://authentikserver.roninent.com/application/o/hermesdashboard/
-      - HERMES_DASHBOARD_OIDC_CLIENT_ID=ccYi2F4ex8UOpvtSIvgH1dbzorpG4aeSTonpeyrn
-      - HERMES_DASHBOARD_OIDC_SCOPES=openid profile email
-      - HERMES_DASHBOARD_PUBLIC_URL=https://ha.roninent.com
+      # - HERMES_DASHBOARD_OIDC_ISSUER=https://authentikserver.roninent.com/application/o/hermesdashboard/
+      # - HERMES_DASHBOARD_OIDC_CLIENT_ID=ccYi2F4ex8UOpvtSIvgH1dbzorpG4aeSTonpeyrn
+      # - HERMES_DASHBOARD_OIDC_SCOPES=openid profile email
+      # - HERMES_DASHBOARD_PUBLIC_URL=https://ha.roninent.com
       
     # Localhost-only. For remote access, tunnel via `ssh -L 9119:localhost:9119`.
-    command: ["dashboard", "--host", "0.0.0.0"]
+    command: ["dashboard", "--host", "0.0.0.0", "--insecure"]
 
     healthcheck:
       test: ["CMD-SHELL", "pgrep -f dashboard || exit 1"]
