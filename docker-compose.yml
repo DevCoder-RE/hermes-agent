@@ -79,16 +79,16 @@ services:
     environment:
       - HERMES_UID=${HERMES_UID:-10000}
       - HERMES_GID=${HERMES_GID:-10000}
-      # - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=admin
-      # - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=ChangeThisImmediately
-      # - HERMES_DASHBOARD_BASIC_AUTH_SECRET=some-long-random-secret-string
+      - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=admin
+      - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=ChangeThisImmediately
+      - HERMES_DASHBOARD_BASIC_AUTH_SECRET=some-long-random-secret-string
       # - HERMES_DASHBOARD_OIDC_ISSUER=https://authentikserver.roninent.com/application/o/hermesdashboard/
       # - HERMES_DASHBOARD_OIDC_CLIENT_ID=ccYi2F4ex8UOpvtSIvgH1dbzorpG4aeSTonpeyrn
       # - HERMES_DASHBOARD_OIDC_SCOPES=openid profile email
       # - HERMES_DASHBOARD_PUBLIC_URL=https://ha.roninent.com
       
     # Localhost-only. For remote access, tunnel via `ssh -L 9119:localhost:9119`.
-    command: ["dashboard", "--host", "0.0.0.0", "--insecure"]
+    command: ["dashboard", "--host", "0.0.0.0"]
 
     healthcheck:
       test: ["CMD-SHELL", "pgrep -f dashboard || exit 1"]
